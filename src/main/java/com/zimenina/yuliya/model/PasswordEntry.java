@@ -1,5 +1,9 @@
 package com.zimenina.yuliya.model;
 
+/**
+ * Class for storing password information.
+ * Contains fields for service, username, and password.
+ */
 public class PasswordEntry {
     private String service;
     private String username;

@@ -12,9 +12,14 @@ import javafx.scene.layout.StackPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * MainController is responsible for handling the main application logic,
+ * including adding, editing, deleting, and saving password entries.
+ */
 public class MainController {
     private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
+    // FXML components
     @FXML private TableView<PasswordEntry> tableView;
     @FXML private TableColumn<PasswordEntry, String> serviceColumn;
     @FXML private TableColumn<PasswordEntry, String> usernameColumn;
@@ -27,15 +32,19 @@ public class MainController {
     private TextField visiblePasswordField;
     private boolean passwordVisible = false;
 
+    // Observable list to hold password entries
     private final ObservableList<PasswordEntry> passwordList = FXCollections.observableArrayList();
 
+    /**
+     * Initializes the controller and sets up the table columns.
+     */
     @FXML
     public void initialize() {
         serviceColumn.setCellValueFactory(new PropertyValueFactory<>("service"));
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
 
-        // Настраиваем столбец пароля с кнопкой переключения
+        // Setting up a password column with a toggle button
         passwordColumn.setCellFactory(col -> new TableCell<PasswordEntry, String>() {
             private final Button toggleButton = new Button("👁");
 
@@ -47,14 +56,15 @@ public class MainController {
                     setGraphic(null);
                 } else {
                     PasswordEntry entry = getTableRow().getItem();
-                    setText(null); // Очищаем текст, используем HBox
+                    setText(null); // Clearing text using HBox
 
                     toggleButton.setText(entry.isPasswordVisible() ? "🙈" : "👁");
                     toggleButton.setOnAction(event -> {
                         entry.setPasswordVisible(!entry.isPasswordVisible());
-                        getTableView().refresh(); // Обновляем таблицу
+                        getTableView().refresh(); // Updating the table
                     });
 
+                    // Create a HBox to hold the password and toggle button
                     HBox hbox = new HBox(5);
                     hbox.getChildren().addAll(new Label(entry.getPassword()), toggleButton);
                     setGraphic(hbox);
@@ -62,31 +72,40 @@ public class MainController {
             }
         });
 
+        // Load data from the JSON file
         loadData();
         tableView.setItems(passwordList);
-        logger.info("Инициализация завершена. Загружено записей: {}", passwordList.size());
+        logger.info("Initialization complete. Records loaded:{}", passwordList.size());
 
+        // Initialize the visible password field
         visiblePasswordField = new TextField();
         visiblePasswordField.setPromptText("Password");
         visiblePasswordField.setPrefWidth(200);
         visiblePasswordField.setManaged(false);
         visiblePasswordField.setVisible(false);
 
+        // Adding the visible password field to the same parent as the password field
         StackPane parent = (StackPane) passwordField.getParent();
         parent.getChildren().add(visiblePasswordField);
     }
 
-    // Остальной код MainController.java остается без изменений
+
+    /**
+     * Loads password entries from the JSON file.
+     */
     private void loadData() {
         try {
             passwordList.setAll(Storage.load());
-            logger.info("Данные успешно загружены из data.json. Количество записей: {}", passwordList.size());
+            logger.info("Data successfully loaded from data.json. Number of records: {}", passwordList.size());
         } catch (Exception e) {
-            logger.error("Ошибка загрузки данных: ", e);
-            showAlert("Ошибка", "Не удалось загрузить данные. Файл data.json может быть поврежден.");
+            logger.error("Error loading data: ", e);
+            showAlert("Error", "Failed to load data. The data.json file may be corrupted.");
         }
     }
 
+    /**
+     * Handles the action of adding a new password entry.
+     */
     @FXML
     private void onAdd() {
         String service = serviceField.getText();
@@ -97,10 +116,13 @@ public class MainController {
             PasswordEntry entry = new PasswordEntry(service, username, password);
             passwordList.add(entry);
             clearFields();
-            logger.info("Добавлена новая запись: {}", service);
+            logger.info("New entry added: {}", service);
         }
     }
 
+    /**
+     * Handles the action of editing an existing password entry.
+     */
     @FXML
     private void onEdit() {
         PasswordEntry selectedEntry = tableView.getSelectionModel().getSelectedItem();
@@ -113,33 +135,42 @@ public class MainController {
                 passwordField.setText(selectedEntry.getPassword());
             }
         } else {
-            showAlert("Предупреждение", "Пожалуйста, выберите запись для редактирования.");
+            showAlert("Alert", "Please select a post to edit.");
         }
     }
 
+    /**
+     * Handles the action of deleting a password entry.
+     */
     @FXML
     private void onDelete() {
         PasswordEntry selectedEntry = tableView.getSelectionModel().getSelectedItem();
         if (selectedEntry != null) {
             passwordList.remove(selectedEntry);
-            logger.info("Запись удалена: {}", selectedEntry.getService());
+            logger.info("Entry deleted: {}", selectedEntry.getService());
         } else {
-            showAlert("Предупреждение", "Пожалуйста, выберите запись для удаления.");
+            showAlert("Alert", "Please select an entry to delete.");
         }
     }
 
+    /**
+     * Handles the action of saving password entries to the JSON file.
+     */
     @FXML
     private void onSave() {
         try {
             Storage.save(passwordList);
-            showAlert("Сохранение", "Данные успешно сохранены в файл data.json.");
-            logger.info("Данные сохранены. Количество записей: {}", passwordList.size());
+            showAlert("Save", "Data has been successfully saved to the data.json file.");
+            logger.info("Data saved. Number of records: {}", passwordList.size());
         } catch (Exception e) {
-            logger.error("Ошибка сохранения данных: ", e);
-            showAlert("Ошибка", "Не удалось сохранить данные.");
+            logger.error("Error saving data: ", e);
+            showAlert("Error", "Failed to save data.");
         }
     }
 
+    /**
+     * Handles the action of toggling password visibility.
+     */
     @FXML
     private void onTogglePasswordVisibility() {
         passwordVisible = !passwordVisible;
@@ -165,6 +196,9 @@ public class MainController {
         }
     }
 
+    /**
+     * Handles the action of clearing the input fields.
+     */
     private void clearFields() {
         serviceField.clear();
         usernameField.clear();
@@ -172,12 +206,21 @@ public class MainController {
         visiblePasswordField.clear();
     }
 
+    /**
+     * Handles the action of clearing the input fields when the clear button is clicked.
+     */
     @FXML
     private void onClear() {
         clearFields();
-        logger.info("Поля очищены пользователем.");
+        logger.info("Fields cleared by user.");
     }
 
+    /**
+     * Displays an alert dialog with the specified title and message.
+     *
+     * @param title   The title of the alert dialog.
+     * @param message The message to be displayed in the alert dialog.
+     */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
