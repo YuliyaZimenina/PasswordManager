@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.zimenina.yuliya.controller.MainController">
+    <top>
+        <VBox spacing="10.0" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="20" right="20" bottom="10" left="20"/>
+            </padding>
+            <!-- Title and subtitle -->
+            <HBox spacing="10.0">
+                <TextField fx:id="serviceField" promptText="Service" prefWidth="200"/>
+                <TextField fx:id="usernameField" promptText="Username" prefWidth="200"/>
+                <StackPane>
+                    <PasswordField fx:id="passwordField" promptText="Password" prefWidth="200"/>
+                    <!-- TextField to display the password is added from the controller -->
+                </StackPane>
+                <Button fx:id="togglePasswordButton" text="👁" onAction="#onTogglePasswordVisibility" prefWidth="40"/>
+            </HBox>
+            <HBox alignment="CENTER">
+                <Button text="Clear" onAction="#onClear" prefWidth="80"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- Center section for the table view -->
+    <center>
+        <VBox spacing="10.0">
+            <padding>
+                <Insets top="10" right="20" bottom="10" left="20"/>
+            </padding>
+            <TableView fx:id="tableView" prefHeight="300.0">
+                <columns>
+                    <TableColumn fx:id="serviceColumn" text="Service" prefWidth="200"/>
+                    <TableColumn fx:id="usernameColumn" text="Username" prefWidth="200"/>
+                    <TableColumn fx:id="passwordColumn" text="Password" prefWidth="200"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+
+    <!-- Bottom section for buttons -->
+    <bottom>
+        <HBox spacing="15.0" alignment="CENTER">
+            <padding>
+                <Insets top="15" right="20" bottom="20" left="20"/>
+            </padding>
+            <Button text="Add" onAction="#onAdd" prefWidth="80"/>
+            <Button text="Edit" onAction="#onEdit" prefWidth="80"/>
+            <Button text="Delete" onAction="#onDelete" prefWidth="80"/>
+            <Button text="Save" onAction="#onSave" prefWidth="80"/>
+        </HBox>
+    </bottom>
+</BorderPane>
