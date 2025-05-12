@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,9 +66,15 @@ public class MainController {
                         getTableView().refresh(); // Updating the table
                     });
 
-                    // Create a HBox to hold the password and toggle button
+                    // Create HBox to hold the password and toggle button
                     HBox hbox = new HBox(5);
-                    hbox.getChildren().addAll(new Label(entry.getPassword()), toggleButton);
+                    Label passwordLabel = new Label(entry.getPassword());
+
+                    // Create a spacer to push the button to the right
+                    Region spacer = new Region();
+                    HBox.setHgrow(spacer, Priority.ALWAYS);
+
+                    hbox.getChildren().addAll(passwordLabel, spacer, toggleButton);
                     setGraphic(hbox);
                 }
             }

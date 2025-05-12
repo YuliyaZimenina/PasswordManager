@@ -2,29 +2,43 @@ package com.zimenina.yuliya.util;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * AES encryption and decryption utility class.
- * This class provides methods to encrypt and decrypt data using AES algorithm.
+ * Uses a master password as the encryption key.
  */
 public class AESUtil {
     private static final Logger logger = LoggerFactory.getLogger(AESUtil.class);
     private static final String ALGORITHM = "AES";
-    private static final String KEY = "MySecretKey12345"; // 16 characters = 16 bytes
+    private static String masterPassword;
 
     /**
-     * Encrypts the given data using AES algorithm.
-     *
-     * @param data the data to encrypt
-     * @return the encrypted data as a Base64 encoded string
+     * Sets the master password to be used for encryption/decryption.
      */
-    public static String encrypt(String data) {
+    public static void setMasterPassword(String password) {
+        masterPassword = password;
+    }
+
+    /**
+     * Generates a 16-byte key from the provided key string.
+     */
+    private static byte[] generateKey(String key) {
+        byte[] keyBytes = key.getBytes(StandardCharsets.UTF_8);
+        byte[] aesKey = new byte[16]; // AES-128 requires a 16-byte key
+        System.arraycopy(keyBytes, 0, aesKey, 0, Math.min(keyBytes.length, aesKey.length));
+        return aesKey;
+    }
+
+    /**
+     * Encrypts the given data using the provided key.
+     */
+    public static String encrypt(String data, String key) {
         try {
-            SecretKeySpec keySpec = new SecretKeySpec(KEY.getBytes(), ALGORITHM);
+            SecretKeySpec keySpec = new SecretKeySpec(generateKey(key), ALGORITHM);
             Cipher cipher = Cipher.getInstance(ALGORITHM);
             cipher.init(Cipher.ENCRYPT_MODE, keySpec);
             byte[] encrypted = cipher.doFinal(data.getBytes());
@@ -37,16 +51,12 @@ public class AESUtil {
         }
     }
 
-
     /**
-     * Decrypts the given encrypted data using AES algorithm.
-     *
-     * @param encryptedData the encrypted data to decrypt
-     * @return the decrypted data as a string
+     * Decrypts the given encrypted data using the provided key.
      */
-    public static String decrypt(String encryptedData) {
+    public static String decrypt(String encryptedData, String key) {
         try {
-            SecretKeySpec keySpec = new SecretKeySpec(KEY.getBytes(), ALGORITHM);
+            SecretKeySpec keySpec = new SecretKeySpec(generateKey(key), ALGORITHM);
             Cipher cipher = Cipher.getInstance(ALGORITHM);
             cipher.init(Cipher.DECRYPT_MODE, keySpec);
             byte[] decoded = Base64.getDecoder().decode(encryptedData);
@@ -58,5 +68,25 @@ public class AESUtil {
             logger.error("Decryption error: ", e);
             throw new RuntimeException("Error decrypting data", e);
         }
+    }
+
+    /**
+     * Encrypts data using the master password as the key.
+     */
+    public static String encrypt(String data) {
+        if (masterPassword == null) {
+            throw new IllegalStateException("Master password not set");
+        }
+        return encrypt(data, masterPassword);
+    }
+
+    /**
+     * Decrypts data using the master password as the key.
+     */
+    public static String decrypt(String encryptedData) {
+        if (masterPassword == null) {
+            throw new IllegalStateException("Master password not set");
+        }
+        return decrypt(encryptedData, masterPassword);
     }
 }

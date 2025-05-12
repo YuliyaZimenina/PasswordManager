@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<!-- This FXML file defines the layout for the Master Login screen of the application.-->
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.zimenina.yuliya.controller.MasterLoginController" spacing="10" alignment="CENTER">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    <PasswordField fx:id="masterPasswordField" promptText="Master Password"/>
+    <Label fx:id="confirmLabel" text="Confirm Password" visible="false"/>
+    <PasswordField fx:id="confirmPasswordField" promptText="Confirm Password" visible="false"/>
+    <Button fx:id="loginButton" text="Login" onAction="#handleLogin"/>
+</VBox>
