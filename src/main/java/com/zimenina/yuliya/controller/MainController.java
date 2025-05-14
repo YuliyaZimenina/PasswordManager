@@ -44,7 +44,7 @@ public class MainController {
     public void initialize() {
         serviceColumn.setCellValueFactory(new PropertyValueFactory<>("service"));
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-        passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
+        passwordColumn.setCellValueFactory(new PropertyValueFactory<>("displayedPassword"));
 
         // Setting up a password column with a toggle button
         passwordColumn.setCellFactory(col -> new TableCell<PasswordEntry, String>() {
@@ -58,49 +58,40 @@ public class MainController {
                     setGraphic(null);
                 } else {
                     PasswordEntry entry = getTableRow().getItem();
-                    setText(null); // Clearing text using HBox
+                    setText(null);
 
                     toggleButton.setText(entry.isPasswordVisible() ? "🙈" : "👁");
                     toggleButton.setOnAction(event -> {
                         entry.setPasswordVisible(!entry.isPasswordVisible());
-                        getTableView().refresh(); // Updating the table
+                        getTableView().refresh();
                     });
 
-                    // Create HBox to hold the password and toggle button
-                    HBox hbox = new HBox(5);
-                    Label passwordLabel = new Label(entry.getPassword());
-
-                    // Create a spacer to push the button to the right
+                    Label passwordLabel = new Label(item != null ? item : "");
                     Region spacer = new Region();
                     HBox.setHgrow(spacer, Priority.ALWAYS);
 
+                    HBox hbox = new HBox(5);
                     hbox.getChildren().addAll(passwordLabel, spacer, toggleButton);
                     setGraphic(hbox);
                 }
             }
         });
 
-        // Load data from the JSON file
         loadData();
         tableView.setItems(passwordList);
         logger.info("Initialization complete. Records loaded:{}", passwordList.size());
 
-        // Initialize the visible password field
         visiblePasswordField = new TextField();
         visiblePasswordField.setPromptText("Password");
         visiblePasswordField.setPrefWidth(200);
         visiblePasswordField.setManaged(false);
         visiblePasswordField.setVisible(false);
 
-        // Adding the visible password field to the same parent as the password field
         StackPane parent = (StackPane) passwordField.getParent();
         parent.getChildren().add(visiblePasswordField);
     }
 
-
-    /**
-     * Loads password entries from the JSON file.
-     */
+    // Load data from the JSON file
     private void loadData() {
         try {
             passwordList.setAll(Storage.load());
@@ -111,9 +102,7 @@ public class MainController {
         }
     }
 
-    /**
-     * Handles the action of adding a new password entry.
-     */
+    // Add a new password entry
     @FXML
     private void onAdd() {
         String service = serviceField.getText();
@@ -128,28 +117,31 @@ public class MainController {
         }
     }
 
-    /**
-     * Handles the action of editing an existing password entry.
-     */
+    // Update the selected entry with new values
     @FXML
     private void onEdit() {
         PasswordEntry selectedEntry = tableView.getSelectionModel().getSelectedItem();
         if (selectedEntry != null) {
             serviceField.setText(selectedEntry.getService());
             usernameField.setText(selectedEntry.getUsername());
+
+            String realPassword = selectedEntry.getPassword();
+            System.out.println("Real password in onEdit: " + realPassword);
+
             if (passwordVisible) {
-                visiblePasswordField.setText(selectedEntry.getPassword());
+                visiblePasswordField.setText(realPassword);
             } else {
-                passwordField.setText(selectedEntry.getPassword());
+                passwordField.setText(realPassword); // PasswordField скрывает
             }
+
+            passwordVisible = false;
+            updatePasswordFieldVisibility();
         } else {
             showAlert("Alert", "Please select a post to edit.");
         }
     }
 
-    /**
-     * Handles the action of deleting a password entry.
-     */
+    // Update the selected entry with new values
     @FXML
     private void onDelete() {
         PasswordEntry selectedEntry = tableView.getSelectionModel().getSelectedItem();
@@ -161,9 +153,7 @@ public class MainController {
         }
     }
 
-    /**
-     * Handles the action of saving password entries to the JSON file.
-     */
+    // Save the password list to a file
     @FXML
     private void onSave() {
         try {
@@ -176,37 +166,53 @@ public class MainController {
         }
     }
 
-    /**
-     * Handles the action of toggling password visibility.
-     */
+    // Toggle password visibility
     @FXML
     private void onTogglePasswordVisibility() {
+        String currentPassword;
+        if (passwordVisible) {
+            currentPassword = visiblePasswordField.getText();
+        } else {
+            currentPassword = passwordField.getText();
+        }
+
         passwordVisible = !passwordVisible;
 
         if (passwordVisible) {
-            visiblePasswordField.setText(passwordField.getText());
+            visiblePasswordField.setText(currentPassword);  // Set the text of the visible password field
             visiblePasswordField.setVisible(true);
             visiblePasswordField.setManaged(true);
-
             passwordField.setVisible(false);
             passwordField.setManaged(false);
-
             togglePasswordButton.setText("🙈");
         } else {
-            passwordField.setText(visiblePasswordField.getText());
+            passwordField.setText(currentPassword); // Set the text of the password field
             passwordField.setVisible(true);
             passwordField.setManaged(true);
-
             visiblePasswordField.setVisible(false);
             visiblePasswordField.setManaged(false);
-
             togglePasswordButton.setText("👁");
         }
     }
 
-    /**
-     * Handles the action of clearing the input fields.
-     */
+    // This method is called when the user types in the password field
+    private void updatePasswordFieldVisibility() {
+        if (passwordVisible) {
+            visiblePasswordField.setVisible(true); // Show the visible password field
+            visiblePasswordField.setManaged(true);
+            passwordField.setVisible(false);
+            passwordField.setManaged(false);
+            togglePasswordButton.setText("🙈");
+        } else {
+            passwordField.setVisible(true); // Show the password field
+            passwordField.setManaged(true);
+            visiblePasswordField.setVisible(false);
+            visiblePasswordField.setManaged(false);
+            togglePasswordButton.setText("👁");
+        }
+    }
+
+    // Clear all input fields
     private void clearFields() {
         serviceField.clear();
         usernameField.clear();
@@ -214,21 +220,14 @@ public class MainController {
         visiblePasswordField.clear();
     }
 
-    /**
-     * Handles the action of clearing the input fields when the clear button is clicked.
-     */
+    // Clear all fields
     @FXML
     private void onClear() {
         clearFields();
         logger.info("Fields cleared by user.");
     }
 
-    /**
-     * Displays an alert dialog with the specified title and message.
-     *
-     * @param title   The title of the alert dialog.
-     * @param message The message to be displayed in the alert dialog.
-     */
+    // Show an alert dialog
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
