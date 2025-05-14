@@ -43,6 +43,7 @@ files, and security tools.
    ```bash
    mvn javafx:run
    ```
+5. Password to enter the application: admin
 
 ## Author
 
@@ -60,29 +61,49 @@ This project is distributed under the MIT license.
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import com.zimenina.yuliya.util.AESUtil;
+import java.io.IOException;
 
 /**
  * Main class for the Password Manager application.
- * This class initializes the JavaFX application and loads the main FXML file.
+ * Initializes the application and delegates master password handling.
  */
 public class Main extends Application {
-    /**
-     * Starts the JavaFX application.
-     *
-     * @param primaryStage the primary stage for this application
-     * @throws Exception if an error occurs during loading the FXML file
-     */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
-        primaryStage.setTitle("Password Manager");
-        primaryStage.setScene(new Scene(loader.load()));
-        primaryStage.show();
+        MasterPasswordManager passwordManager = new MasterPasswordManager();
+        String masterPassword = passwordManager.authenticate(primaryStage);
+
+        if (masterPassword != null) {
+            loadMainWindow(primaryStage, masterPassword);
+        } else {
+            primaryStage.close();
+        }
+    }
+
+    /**
+     * Loads the main application window after successful authentication.
+     */
+    private void loadMainWindow(Stage primaryStage, String masterPassword) {
+        try {
+            AESUtil.setMasterPassword(masterPassword);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
+            primaryStage.setTitle("Password Manager");
+            primaryStage.setScene(new Scene(loader.load()));
+            primaryStage.show();
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Failed to load the main window.");
+            alert.showAndWait();
+            primaryStage.close();
+        }
     }
 
     public static void main(String[] args) {
         launch(args);
     }
 }
-
