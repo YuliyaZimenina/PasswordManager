@@ -10,6 +10,7 @@
 4. [Author](#author)
 5. [License](#license)
 6. [Usage Examples](#usage-examples)
+7. [Screenshots](#screenshots)
 
 ## Description
 The Password Manager project was developed to reinforce skills in working with GUI (JavaFX), data encryption,
@@ -107,3 +108,9 @@ public class Main extends Application {
         launch(args);
     }
 }
+
+```
+
+## Screenshots
+
+![Start_Page](start_page.png)
