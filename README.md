@@ -112,5 +112,26 @@ public class Main extends Application {
 ```
 
 ## Screenshots
+To enter the application, you need to enter your login on the start page.
 
-![Start_Page](start_page.png)
+![Start_Page](images/login.png)
+
+
+The application has a simple and user-friendly interface. The main window displays a list of saved passwords,
+and users can add, edit, or delete records as needed.
+![Main_Page](images/main_window.png)
+
+The application allows users to add new passwords, including the service name, login, and password.
+
+![Add_Page](images/add.png)
+
+User data is presented in a convenient table.
+
+![Table](images/table.png)
+
+The application has the ability to hide/show the password in the table and in the password input field.
+
+![Hide_Show](images/hide_show.png)
+
+
+
