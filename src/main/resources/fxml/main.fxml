@@ -15,12 +15,14 @@
                 <TextField fx:id="usernameField" promptText="Username" prefWidth="200"/>
                 <StackPane>
                     <PasswordField fx:id="passwordField" promptText="Password" prefWidth="200"/>
-                    <!-- TextField to display the password is added from the controller -->
                 </StackPane>
                 <Button fx:id="togglePasswordButton" text="👁" onAction="#onTogglePasswordVisibility" prefWidth="40"/>
             </HBox>
             <HBox alignment="CENTER">
                 <Button text="Clear" onAction="#onClear" prefWidth="80"/>
+            </HBox>
+            <HBox spacing="10.0">
+                <TextField fx:id="searchField" promptText="Search" prefWidth="200" onKeyReleased="#onSearch"/>
             </HBox>
         </VBox>
     </top>

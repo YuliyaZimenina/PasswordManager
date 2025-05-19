@@ -641,3 +641,57 @@ Caused by: javax.crypto.BadPaddingException: Given final block not properly padd
 2025-05-15 13:49:54 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.Storage - The data is encrypted
 2025-05-15 13:49:54 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.Storage - Data successfully written to file
 2025-05-15 13:49:55 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Data saved. Number of records: 4
+2025-05-19 17:28:09 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.AESUtil - Data encrypted successfully
+2025-05-19 17:29:06 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.AESUtil - Data encrypted successfully
+2025-05-19 17:29:07 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.Storage - Data read from file: YZVd5EvLoI/bXVms68tcvab5WHCB/a/zGi2+RHdTscHYtMIzBH1fPcrijjO0/WMSqZ9Dkm46AX/I8pXbhvxR/PvVl0YcEWAEujSDUDngqg8hw/+4yUGJ+El1B16n718pEu3ZhC0aAMzC4W2AnUpuxPkUKR05ykYcEKdxWNS2pn7aMc3cCO5pTnZKL2W2QJ7EbR9mGpmz3guze9EqB98OGIIclqzpIkhbXQ9o4OOnx0pVMZha91jR3I9IxwjSOGOwQhKfULKownLYntFjq2b45KEL1IhT4KuFXPfaJNSkdKPFFqSlptw3T9+1Zr4V8sRR4ZdApzJRAhWKaLsDcEFfPo4+hwMvv81KuPbsyDwcRurwZL4K49z1q24ofRatYpdqaGWkWI7RE9je+FCwQBTMpu5bPF47bAdPfH+njCn6749iyZX0rCD4557s9PmzVq3Zts2wB2wEcFCJzeYR7HyM+DxbuuqkPR1d4c6zYC+/w9NAydZDft8bYZ+Sghkq12bU1e0Vak2P54LpdFQbJJMBiSHD/7jJQYn4SXUHXqfvXynIDOVvsOSRb89g9Wspkc6+
+2025-05-19 17:29:07 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.AESUtil - Data successfully decrypted
+2025-05-19 17:29:07 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.Storage - Data decrypted: [{"service":"Google","username":"jonh_doy@gmail.com","password":"1234567890","isPasswordVisible":false},{"service":"Facebook","username":"Jonh Doy","password":"qwertyuasdfghzxcvb","isPasswordVisible":false},{"service":"Bank # 1","username":"Client # 1","password":"pdpeqnergsfE121`4325354","isPasswordVisible":false},{"service":"Bank # 2","username":"Account # 2 ","password":"12345qwertASDF1234","isPasswordVisible":false}]
+2025-05-19 17:29:07 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.Storage - Data deserialized, records:4
+2025-05-19 17:29:07 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Data successfully loaded from data.json. Number of records: 4
+2025-05-19 17:29:07 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Initialization complete. Records loaded:4
+2025-05-19 17:31:19 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.AESUtil - Data encrypted successfully
+2025-05-19 17:31:19 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.Storage - Data read from file: YZVd5EvLoI/bXVms68tcvab5WHCB/a/zGi2+RHdTscHYtMIzBH1fPcrijjO0/WMSqZ9Dkm46AX/I8pXbhvxR/PvVl0YcEWAEujSDUDngqg8hw/+4yUGJ+El1B16n718pEu3ZhC0aAMzC4W2AnUpuxPkUKR05ykYcEKdxWNS2pn7aMc3cCO5pTnZKL2W2QJ7EbR9mGpmz3guze9EqB98OGIIclqzpIkhbXQ9o4OOnx0pVMZha91jR3I9IxwjSOGOwQhKfULKownLYntFjq2b45KEL1IhT4KuFXPfaJNSkdKPFFqSlptw3T9+1Zr4V8sRR4ZdApzJRAhWKaLsDcEFfPo4+hwMvv81KuPbsyDwcRurwZL4K49z1q24ofRatYpdqaGWkWI7RE9je+FCwQBTMpu5bPF47bAdPfH+njCn6749iyZX0rCD4557s9PmzVq3Zts2wB2wEcFCJzeYR7HyM+DxbuuqkPR1d4c6zYC+/w9NAydZDft8bYZ+Sghkq12bU1e0Vak2P54LpdFQbJJMBiSHD/7jJQYn4SXUHXqfvXynIDOVvsOSRb89g9Wspkc6+
+2025-05-19 17:31:19 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.AESUtil - Data successfully decrypted
+2025-05-19 17:31:19 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.Storage - Data decrypted: [{"service":"Google","username":"jonh_doy@gmail.com","password":"1234567890","isPasswordVisible":false},{"service":"Facebook","username":"Jonh Doy","password":"qwertyuasdfghzxcvb","isPasswordVisible":false},{"service":"Bank # 1","username":"Client # 1","password":"pdpeqnergsfE121`4325354","isPasswordVisible":false},{"service":"Bank # 2","username":"Account # 2 ","password":"12345qwertASDF1234","isPasswordVisible":false}]
+2025-05-19 17:31:19 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.Storage - Data deserialized, records:4
+2025-05-19 17:31:19 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Data successfully loaded from data.json. Number of records: 4
+2025-05-19 17:31:19 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Initialization complete. Records loaded:4
+2025-05-19 17:31:36 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: g
+2025-05-19 17:31:36 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: g
+2025-05-19 17:31:37 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: 
+2025-05-19 17:34:40 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.AESUtil - Data encrypted successfully
+2025-05-19 17:34:41 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.Storage - Data read from file: YZVd5EvLoI/bXVms68tcvab5WHCB/a/zGi2+RHdTscHYtMIzBH1fPcrijjO0/WMSqZ9Dkm46AX/I8pXbhvxR/PvVl0YcEWAEujSDUDngqg8hw/+4yUGJ+El1B16n718pEu3ZhC0aAMzC4W2AnUpuxPkUKR05ykYcEKdxWNS2pn7aMc3cCO5pTnZKL2W2QJ7EbR9mGpmz3guze9EqB98OGIIclqzpIkhbXQ9o4OOnx0pVMZha91jR3I9IxwjSOGOwQhKfULKownLYntFjq2b45KEL1IhT4KuFXPfaJNSkdKPFFqSlptw3T9+1Zr4V8sRR4ZdApzJRAhWKaLsDcEFfPo4+hwMvv81KuPbsyDwcRurwZL4K49z1q24ofRatYpdqaGWkWI7RE9je+FCwQBTMpu5bPF47bAdPfH+njCn6749iyZX0rCD4557s9PmzVq3Zts2wB2wEcFCJzeYR7HyM+DxbuuqkPR1d4c6zYC+/w9NAydZDft8bYZ+Sghkq12bU1e0Vak2P54LpdFQbJJMBiSHD/7jJQYn4SXUHXqfvXynIDOVvsOSRb89g9Wspkc6+
+2025-05-19 17:34:41 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.AESUtil - Data successfully decrypted
+2025-05-19 17:34:41 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.Storage - Data decrypted: [{"service":"Google","username":"jonh_doy@gmail.com","password":"1234567890","isPasswordVisible":false},{"service":"Facebook","username":"Jonh Doy","password":"qwertyuasdfghzxcvb","isPasswordVisible":false},{"service":"Bank # 1","username":"Client # 1","password":"pdpeqnergsfE121`4325354","isPasswordVisible":false},{"service":"Bank # 2","username":"Account # 2 ","password":"12345qwertASDF1234","isPasswordVisible":false}]
+2025-05-19 17:34:41 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.Storage - Data deserialized, records:4
+2025-05-19 17:34:41 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Data successfully loaded from data.json. Number of records: 4
+2025-05-19 17:34:41 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Initialization complete. Records loaded:4
+2025-05-19 17:34:46 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: b
+2025-05-19 17:34:46 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: b
+2025-05-19 17:34:48 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: ba
+2025-05-19 17:34:48 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: ban
+2025-05-19 17:34:48 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: bank
+2025-05-19 17:34:53 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: bank 
+2025-05-19 17:34:54 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: bank #
+2025-05-19 17:34:54 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: bank #
+2025-05-19 17:34:55 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: bank # 
+2025-05-19 17:34:56 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: bank # 1
+2025-05-19 17:35:09 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: 
+2025-05-19 17:35:12 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: j
+2025-05-19 17:35:12 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: j
+2025-05-19 17:35:13 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: 
+2025-05-19 22:03:24 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.AESUtil - Data encrypted successfully
+2025-05-19 22:03:24 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.Storage - Data read from file: YZVd5EvLoI/bXVms68tcvab5WHCB/a/zGi2+RHdTscHYtMIzBH1fPcrijjO0/WMSqZ9Dkm46AX/I8pXbhvxR/PvVl0YcEWAEujSDUDngqg8hw/+4yUGJ+El1B16n718pEu3ZhC0aAMzC4W2AnUpuxPkUKR05ykYcEKdxWNS2pn7aMc3cCO5pTnZKL2W2QJ7EbR9mGpmz3guze9EqB98OGIIclqzpIkhbXQ9o4OOnx0pVMZha91jR3I9IxwjSOGOwQhKfULKownLYntFjq2b45KEL1IhT4KuFXPfaJNSkdKPFFqSlptw3T9+1Zr4V8sRR4ZdApzJRAhWKaLsDcEFfPo4+hwMvv81KuPbsyDwcRurwZL4K49z1q24ofRatYpdqaGWkWI7RE9je+FCwQBTMpu5bPF47bAdPfH+njCn6749iyZX0rCD4557s9PmzVq3Zts2wB2wEcFCJzeYR7HyM+DxbuuqkPR1d4c6zYC+/w9NAydZDft8bYZ+Sghkq12bU1e0Vak2P54LpdFQbJJMBiSHD/7jJQYn4SXUHXqfvXynIDOVvsOSRb89g9Wspkc6+
+2025-05-19 22:03:24 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.AESUtil - Data successfully decrypted
+2025-05-19 22:03:24 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.Storage - Data decrypted: [{"service":"Google","username":"jonh_doy@gmail.com","password":"1234567890","isPasswordVisible":false},{"service":"Facebook","username":"Jonh Doy","password":"qwertyuasdfghzxcvb","isPasswordVisible":false},{"service":"Bank # 1","username":"Client # 1","password":"pdpeqnergsfE121`4325354","isPasswordVisible":false},{"service":"Bank # 2","username":"Account # 2 ","password":"12345qwertASDF1234","isPasswordVisible":false}]
+2025-05-19 22:03:24 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.Storage - Data deserialized, records:4
+2025-05-19 22:03:24 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Data successfully loaded from data.json. Number of records: 4
+2025-05-19 22:03:24 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Initialization complete. Records loaded:4
+2025-05-19 22:03:32 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: g
+2025-05-19 22:03:32 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: g
+2025-05-19 22:03:38 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: 
+2025-05-19 22:03:39 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: b
+2025-05-19 22:03:39 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: b
+2025-05-19 22:03:41 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: ba
+2025-05-19 22:03:41 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: ban
+2025-05-19 22:03:42 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: bank

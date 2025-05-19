@@ -4,6 +4,7 @@ import com.zimenina.yuliya.model.PasswordEntry;
 import com.zimenina.yuliya.util.Storage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -30,12 +31,14 @@ public class MainController {
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
     @FXML private Button togglePasswordButton;
+    @FXML private TextField searchField;
 
     private TextField visiblePasswordField;
     private boolean passwordVisible = false;
 
     // Observable list to hold password entries
     private final ObservableList<PasswordEntry> passwordList = FXCollections.observableArrayList();
+    private FilteredList<PasswordEntry> filteredList;
 
     /**
      * Initializes the controller and sets up the table columns.
@@ -46,7 +49,6 @@ public class MainController {
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         passwordColumn.setCellValueFactory(new PropertyValueFactory<>("displayedPassword"));
 
-        // Setting up a password column with a toggle button
         passwordColumn.setCellFactory(col -> new TableCell<PasswordEntry, String>() {
             private final Button toggleButton = new Button("👁");
 
@@ -78,7 +80,8 @@ public class MainController {
         });
 
         loadData();
-        tableView.setItems(passwordList);
+        filteredList = new FilteredList<>(passwordList, p -> true);
+        tableView.setItems(filteredList);
         logger.info("Initialization complete. Records loaded:{}", passwordList.size());
 
         visiblePasswordField = new TextField();
@@ -98,7 +101,7 @@ public class MainController {
             logger.info("Data successfully loaded from data.json. Number of records: {}", passwordList.size());
         } catch (Exception e) {
             logger.error("Error loading data: ", e);
-            showAlert("Error", "Failed to load data. The data.json file may be corrupted.");
+            showAlert("Ошибка", "Не удалось загрузить данные. Файл data.json может быть поврежден.");
         }
     }
 
@@ -131,13 +134,13 @@ public class MainController {
             if (passwordVisible) {
                 visiblePasswordField.setText(realPassword);
             } else {
-                passwordField.setText(realPassword); // PasswordField скрывает
+                passwordField.setText(realPassword);
             }
 
             passwordVisible = false;
             updatePasswordFieldVisibility();
         } else {
-            showAlert("Alert", "Please select a post to edit.");
+            showAlert("Предупреждение", "Пожалуйста, выберите запись для редактирования.");
         }
     }
 
@@ -149,7 +152,7 @@ public class MainController {
             passwordList.remove(selectedEntry);
             logger.info("Entry deleted: {}", selectedEntry.getService());
         } else {
-            showAlert("Alert", "Please select an entry to delete.");
+            showAlert("Предупреждение", "Пожалуйста, выберите запись для удаления.");
         }
     }
 
@@ -158,11 +161,11 @@ public class MainController {
     private void onSave() {
         try {
             Storage.save(passwordList);
-            showAlert("Save", "Data has been successfully saved to the data.json file.");
+            showAlert("Сохранение", "Данные успешно сохранены в файл data.json.");
             logger.info("Data saved. Number of records: {}", passwordList.size());
         } catch (Exception e) {
             logger.error("Error saving data: ", e);
-            showAlert("Error", "Failed to save data.");
+            showAlert("Ошибка", "Не удалось сохранить данные.");
         }
     }
 
@@ -179,14 +182,14 @@ public class MainController {
         passwordVisible = !passwordVisible;
 
         if (passwordVisible) {
-            visiblePasswordField.setText(currentPassword);  // Set the text of the visible password field
+            visiblePasswordField.setText(currentPassword);
             visiblePasswordField.setVisible(true);
             visiblePasswordField.setManaged(true);
             passwordField.setVisible(false);
             passwordField.setManaged(false);
             togglePasswordButton.setText("🙈");
         } else {
-            passwordField.setText(currentPassword); // Set the text of the password field
+            passwordField.setText(currentPassword);
             passwordField.setVisible(true);
             passwordField.setManaged(true);
             visiblePasswordField.setVisible(false);
@@ -198,13 +201,13 @@ public class MainController {
     // This method is called when the user types in the password field
     private void updatePasswordFieldVisibility() {
         if (passwordVisible) {
-            visiblePasswordField.setVisible(true); // Show the visible password field
+            visiblePasswordField.setVisible(true);
             visiblePasswordField.setManaged(true);
             passwordField.setVisible(false);
             passwordField.setManaged(false);
             togglePasswordButton.setText("🙈");
         } else {
-            passwordField.setVisible(true); // Show the password field
+            passwordField.setVisible(true);
             passwordField.setManaged(true);
             visiblePasswordField.setVisible(false);
             visiblePasswordField.setManaged(false);
@@ -225,6 +228,19 @@ public class MainController {
     private void onClear() {
         clearFields();
         logger.info("Fields cleared by user.");
+    }
+
+    // Search functionality
+    @FXML
+    private void onSearch() {
+        String searchText = searchField.getText().toLowerCase();
+        filteredList.setPredicate(entry -> {
+            if (searchText == null || searchText.isEmpty()) {
+                return true;
+            }
+            return entry.getService().toLowerCase().contains(searchText);
+        });
+        logger.info("Search performed for: {}", searchText);
     }
 
     // Show an alert dialog
