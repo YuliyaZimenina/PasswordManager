@@ -20,21 +20,22 @@ import java.util.List;
  */
 public class Storage {
     private static final Logger logger = LoggerFactory.getLogger(Storage.class);
-    private static final String FILE_NAME = "data.json";
     private static final Gson gson = new Gson();
 
     /**
      * Saves the given list of password entries to a file.
+     * @param entries the list of password entries to save
+     * @param fileName the name of the file to save to
      */
-    public static void save(ObservableList<PasswordEntry> entries) {
+    public static void save(ObservableList<PasswordEntry> entries, String fileName) {
         try {
-            logger.info("Saving data to a file: {}", FILE_NAME);
+            logger.info("Saving data to a file: {}", fileName);
             List<PasswordEntry> list = new ArrayList<>(entries);
             String json = gson.toJson(list);
             logger.info("The data is serialized in JSON: {}", json);
             String encrypted = AESUtil.encrypt(json);
             logger.info("The data is encrypted");
-            try (FileWriter writer = new FileWriter(FILE_NAME)) {
+            try (FileWriter writer = new FileWriter(fileName)) {
                 writer.write(encrypted);
                 logger.info("Data successfully written to file");
             }
@@ -46,11 +47,13 @@ public class Storage {
 
     /**
      * Loads the password entries from a file.
+     * @param fileName the name of the file to load from
+     * @return the list of password entries
      */
-    public static List<PasswordEntry> load() {
-        File file = new File(FILE_NAME);
+    public static List<PasswordEntry> load(String fileName) {
+        File file = new File(fileName);
         if (!file.exists()) {
-            logger.info("File {} does not exist, returning empty list", FILE_NAME);
+            logger.info("File {} does not exist, returning empty list", fileName);
             return new ArrayList<>();
         }
         try (FileReader reader = new FileReader(file)) {

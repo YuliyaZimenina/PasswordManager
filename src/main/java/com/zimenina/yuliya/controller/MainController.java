@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
  * including adding, editing, deleting, and saving password entries.
  */
 public class MainController {
+    private static final String FILE_NAME = "data.json";
     private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
     // FXML components
@@ -97,11 +98,11 @@ public class MainController {
     // Load data from the JSON file
     private void loadData() {
         try {
-            passwordList.setAll(Storage.load());
+            passwordList.setAll(Storage.load(FILE_NAME));
             logger.info("Data successfully loaded from data.json. Number of records: {}", passwordList.size());
         } catch (Exception e) {
             logger.error("Error loading data: ", e);
-            showAlert("Ошибка", "Не удалось загрузить данные. Файл data.json может быть поврежден.");
+            showAlert("Error", "Failed to load data. The data.json file may be corrupted.");
         }
     }
 
@@ -140,7 +141,7 @@ public class MainController {
             passwordVisible = false;
             updatePasswordFieldVisibility();
         } else {
-            showAlert("Предупреждение", "Пожалуйста, выберите запись для редактирования.");
+            showAlert("Alert", "Please select a post to edit.");
         }
     }
 
@@ -152,7 +153,7 @@ public class MainController {
             passwordList.remove(selectedEntry);
             logger.info("Entry deleted: {}", selectedEntry.getService());
         } else {
-            showAlert("Предупреждение", "Пожалуйста, выберите запись для удаления.");
+            showAlert("Alert", "Please select a post to delete.");
         }
     }
 
@@ -160,12 +161,12 @@ public class MainController {
     @FXML
     private void onSave() {
         try {
-            Storage.save(passwordList);
-            showAlert("Сохранение", "Данные успешно сохранены в файл data.json.");
+            Storage.save(passwordList, FILE_NAME);
+            showAlert("Save", "Data has been successfully saved to the data.json file.");
             logger.info("Data saved. Number of records: {}", passwordList.size());
         } catch (Exception e) {
             logger.error("Error saving data: ", e);
-            showAlert("Ошибка", "Не удалось сохранить данные.");
+            showAlert("Error", "Failed to save data.");
         }
     }
 
