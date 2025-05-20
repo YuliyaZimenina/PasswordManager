@@ -130,9 +130,13 @@ User data is presented in a convenient table.
 
 <img src="images/table.png" alt="Table" width="500">
 
-The application has the ability to hide/show the password in the table and in the password input field.
+The application can hide/show the password in the table and in the password input field.
 
 <img src="images/hide_show.png" alt="Hide/Show Password" width="500">
+
+The application implements a search for records by service name.
+
+<img src="images/search.png" alt="Search" width="500">
 
 
 
