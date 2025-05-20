@@ -32,7 +32,7 @@ files, and security tools.
 
 ## Installation and Launch
 1. Clone the repository:
-   
+
    ```bash
    git clone https://github.com/YuliyaZimenina/PassworManager.git
    cd PasswordManager
@@ -41,7 +41,7 @@ files, and security tools.
 4. Run the application (for example:
    - Open the terminal in IntelliJ IDEA
    - Type the command:
-     
+
    ```bash
    mvn javafx:run
    ```
@@ -73,41 +73,41 @@ import java.io.IOException;
  * Initializes the application and delegates master password handling.
  */
 public class Main extends Application {
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        MasterPasswordManager passwordManager = new MasterPasswordManager();
-        String masterPassword = passwordManager.authenticate(primaryStage);
+   @Override
+   public void start(Stage primaryStage) throws Exception {
+      MasterPasswordManager passwordManager = new MasterPasswordManager();
+      String masterPassword = passwordManager.authenticate(primaryStage);
 
-        if (masterPassword != null) {
-            loadMainWindow(primaryStage, masterPassword);
-        } else {
-            primaryStage.close();
-        }
-    }
+      if (masterPassword != null) {
+         loadMainWindow(primaryStage, masterPassword);
+      } else {
+         primaryStage.close();
+      }
+   }
 
-    /**
-     * Loads the main application window after successful authentication.
-     */
-    private void loadMainWindow(Stage primaryStage, String masterPassword) {
-        try {
-            AESUtil.setMasterPassword(masterPassword);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
-            primaryStage.setTitle("Password Manager");
-            primaryStage.setScene(new Scene(loader.load()));
-            primaryStage.show();
-        } catch (IOException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText("Failed to load the main window.");
-            alert.showAndWait();
-            primaryStage.close();
-        }
-    }
+   /**
+    * Loads the main application window after successful authentication.
+    */
+   private void loadMainWindow(Stage primaryStage, String masterPassword) {
+      try {
+         AESUtil.setMasterPassword(masterPassword);
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
+         primaryStage.setTitle("Password Manager");
+         primaryStage.setScene(new Scene(loader.load()));
+         primaryStage.show();
+      } catch (IOException e) {
+         Alert alert = new Alert(Alert.AlertType.ERROR);
+         alert.setTitle("Error");
+         alert.setHeaderText(null);
+         alert.setContentText("Failed to load the main window.");
+         alert.showAndWait();
+         primaryStage.close();
+      }
+   }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+   public static void main(String[] args) {
+      launch(args);
+   }
 }
 
 ```
@@ -130,9 +130,13 @@ User data is presented in a convenient table.
 
 <img src="images/table.png" alt="Table" width="500">
 
-The application has the ability to hide/show the password in the table and in the password input field.
+The application can hide/show the password in the table and in the password input field.
 
 <img src="images/hide_show.png" alt="Hide/Show Password" width="500">
+
+The application implements a search for records by service name.
+
+<img src="images/search.png" alt="Search" width="500">
 
 
 
