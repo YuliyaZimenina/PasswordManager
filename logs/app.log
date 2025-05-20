@@ -937,3 +937,34 @@ java.io.FileNotFoundException: test_data.json (Отказано в доступ�
 2025-05-20 14:15:41 INFO  [main] com.zimenina.yuliya.util.Storage - Data read from file: [{"service":"Service1","username":"User1","password":"Pass1","isPasswordVisible":false},{"service":"Service2","username":"User2","password":"Pass2","isPasswordVisible":false}]
 2025-05-20 14:15:41 INFO  [main] com.zimenina.yuliya.util.Storage - Data decrypted: [{"service":"Service1","username":"User1","password":"Pass1","isPasswordVisible":false},{"service":"Service2","username":"User2","password":"Pass2","isPasswordVisible":false}]
 2025-05-20 14:15:41 INFO  [main] com.zimenina.yuliya.util.Storage - Data deserialized, records:2
+2025-05-20 14:52:31 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.AESUtil - Data encrypted successfully
+2025-05-20 14:52:31 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.Storage - Data read from file: YZVd5EvLoI/bXVms68tcvab5WHCB/a/zGi2+RHdTscHYtMIzBH1fPcrijjO0/WMSqZ9Dkm46AX/I8pXbhvxR/PvVl0YcEWAEujSDUDngqg8hw/+4yUGJ+El1B16n718pEu3ZhC0aAMzC4W2AnUpuxPkUKR05ykYcEKdxWNS2pn7aMc3cCO5pTnZKL2W2QJ7EbR9mGpmz3guze9EqB98OGIIclqzpIkhbXQ9o4OOnx0pVMZha91jR3I9IxwjSOGOwQhKfULKownLYntFjq2b45KEL1IhT4KuFXPfaJNSkdKPFFqSlptw3T9+1Zr4V8sRR4ZdApzJRAhWKaLsDcEFfPo4+hwMvv81KuPbsyDwcRurwZL4K49z1q24ofRatYpdqaGWkWI7RE9je+FCwQBTMpu5bPF47bAdPfH+njCn6749iyZX0rCD4557s9PmzVq3Zts2wB2wEcFCJzeYR7HyM+DxbuuqkPR1d4c6zYC+/w9NAydZDft8bYZ+Sghkq12bU1e0Vak2P54LpdFQbJJMBiSHD/7jJQYn4SXUHXqfvXynIDOVvsOSRb89g9Wspkc6+
+2025-05-20 14:52:31 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.AESUtil - Data successfully decrypted
+2025-05-20 14:52:31 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.Storage - Data decrypted: [{"service":"Google","username":"jonh_doy@gmail.com","password":"1234567890","isPasswordVisible":false},{"service":"Facebook","username":"Jonh Doy","password":"qwertyuasdfghzxcvb","isPasswordVisible":false},{"service":"Bank # 1","username":"Client # 1","password":"pdpeqnergsfE121`4325354","isPasswordVisible":false},{"service":"Bank # 2","username":"Account # 2 ","password":"12345qwertASDF1234","isPasswordVisible":false}]
+2025-05-20 14:52:31 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.Storage - Data deserialized, records:4
+2025-05-20 14:52:31 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Data successfully loaded from data.json. Number of records: 4
+2025-05-20 14:52:31 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Initialization complete. Records loaded:4
+2025-05-20 14:53:51 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Fields cleared by user.
+2025-05-20 14:54:01 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: b
+2025-05-20 14:54:01 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: b
+2025-05-20 14:54:02 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: ba
+2025-05-20 14:54:03 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: ban
+2025-05-20 14:54:03 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: bank
+2025-05-20 14:54:21 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: bank
+2025-05-20 14:54:26 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: ban
+2025-05-20 14:54:26 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: ba
+2025-05-20 14:54:26 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: b
+2025-05-20 14:54:27 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Search performed for: 
+2025-05-20 14:54:51 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.Storage - Saving data to a file: data.json
+2025-05-20 14:54:51 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.Storage - The data is serialized in JSON: [{"service":"Google","username":"jonh_doy@gmail.com","password":"1234567890","isPasswordVisible":false},{"service":"Facebook","username":"Jonh Doy","password":"qwertyuasdfghzxcvb","isPasswordVisible":false},{"service":"Bank # 1","username":"Client # 1","password":"pdpeqnergsfE121`4325354","isPasswordVisible":false},{"service":"Bank # 2","username":"Account # 2 ","password":"12345qwertASDF1234","isPasswordVisible":false}]
+2025-05-20 14:54:51 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.AESUtil - Data encrypted successfully
+2025-05-20 14:54:51 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.Storage - The data is encrypted
+2025-05-20 14:54:51 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.Storage - Data successfully written to file
+2025-05-20 14:54:53 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Data saved. Number of records: 4
+2025-05-20 14:57:13 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - New entry added: Work
+2025-05-20 14:57:20 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.Storage - Saving data to a file: data.json
+2025-05-20 14:57:20 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.Storage - The data is serialized in JSON: [{"service":"Google","username":"jonh_doy@gmail.com","password":"1234567890","isPasswordVisible":false},{"service":"Facebook","username":"Jonh Doy","password":"qwertyuasdfghzxcvb","isPasswordVisible":false},{"service":"Bank # 1","username":"Client # 1","password":"pdpeqnergsfE121`4325354","isPasswordVisible":false},{"service":"Bank # 2","username":"Account # 2 ","password":"12345qwertASDF1234","isPasswordVisible":false},{"service":"Work","username":"Jonh_Doy","password":"12124342342345","isPasswordVisible":false}]
+2025-05-20 14:57:20 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.AESUtil - Data encrypted successfully
+2025-05-20 14:57:20 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.Storage - The data is encrypted
+2025-05-20 14:57:20 INFO  [JavaFX Application Thread] com.zimenina.yuliya.util.Storage - Data successfully written to file
+2025-05-20 14:57:22 INFO  [JavaFX Application Thread] c.z.yuliya.controller.MainController - Data saved. Number of records: 5
