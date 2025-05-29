@@ -37,15 +37,15 @@ files, and security tools.
    git clone https://github.com/YuliyaZimenina/PassworManager.git
    cd PasswordManager
    ```
-3. Open the project in your favorite IDE (IntelliJ IDEA, Eclipse, etc.).
-4. Run the application (for example:
+2. Open the project in your favorite IDE (IntelliJ IDEA, Eclipse, etc.).
+3. Run the application (for example:
    - Open the terminal in IntelliJ IDEA
    - Type the command:
 
    ```bash
    mvn javafx:run
    ```
-5. Password to enter the application: admin
+4. Password to enter the application: admin
 
 ## Author
 
