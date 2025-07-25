@@ -2,7 +2,7 @@
 # Password Manager
 ***(IN PROGRESS)***
 
-** This project demonstrates work with GUI (JavaFX 21), security, files, and data encryption.**
+This project demonstrates work with GUI (JavaFX 21), security, files, and data encryption.
 
 ## Table of contents
 1. [Description](#description)
@@ -38,7 +38,7 @@ files, and security tools.
    cd PasswordManager
    ```
 2. Open the project in your favorite IDE (IntelliJ IDEA, Eclipse, etc.).
-3. Run the application (for example:
+3. Run the application (for example):
    - Open the terminal in IntelliJ IDEA
    - Type the command:
 
